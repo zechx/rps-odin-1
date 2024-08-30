@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+
+  <script>
+    // Your JavaScript goes here!
+    console.log("Welcome to Rock, Paper, Scissors! Press 1 for Rock, 2 for Paper, 3 for Scissors.")
+
+
+    // Computer Pick:
+
+    function getRandomInt(max) {
+        return Math.floor(Math.random() * max);
+    }
+
+    function getComputerChoice(){
+        let computerPick = getRandomInt(3);
+        
+        if (computerPick === 0) {
+        computerPick = 'Rock';
+        } 
+        else if (computerPick === 1) {
+        computerPick = 'Paper';
+        } 
+        else {
+        computerPick = 'Scissors';
+        }
+
+        return computerPick;
+    }
+
+    // Player Pick:
+
+    function getPlayerChoice() {
+        let playerPick;
+        let userInput;
+
+        while (true) {
+
+            userInput = prompt("What's Your Choice?");
+            userInput = parseInt(userInput, 10);
+
+            if (userInput == 1) {
+                playerPick = "Rock";
+                break;
+            }
+            else if (userInput == 2) {
+                playerPick = "Paper";
+                break;
+            }
+            else if (userInput == 3) {
+                playerPick = "Scissors";
+                break;
+            }
+            else {
+                alert("Please choose a number between 1 and 3.");
+            }
+        }
+        return playerPick;
+    }
+
+
+
+
+    function playGame(){
+
+        let playerScore = 0;
+        let computerScore = 0;
+
+        function playRound(computerChoice, userPick){
+            let computerPick = getComputerChoice();
+            let playerPick = getPlayerChoice();
+            console.log(playerPick);
+            console.log(computerPick);
+        
+            let result;
+
+            if (computerPick == playerPick){
+                result = "it's a draw!"
+            }
+            else if (computerPick == "Rock" && playerPick == "Paper"){
+                result = "User Wins!"
+                playerScore += 1;
+            }
+            else if (computerPick == "Rock" && playerPick == "Scissors"){
+                result = "Computer Wins!"
+                computerScore += 1;
+            }
+            else if (computerPick == "Paper" && playerPick == "Rock"){
+                result = "Computer Wins!"
+                computerScore += 1;
+            }
+            else if (computerPick == "Paper" && playerPick == "Scissors"){
+                result = "User Wins!"
+                playerScore += 1;
+            }
+            else if (computerPick == "Scissors" && playerPick == "Rock"){
+                result = "User Wins!"
+                playerScore += 1;
+            }
+            else if (computerPick == "Scissors" && playerPick == "Paper"){
+                result = "Computer Wins!"
+                computerScore += 1;
+            }
+
+            console.log(result);
+        }
+        
+        for (let round = 0; round < 5; round++) {
+            playRound()
+        }
+
+        console.log("Final Scores:");
+        console.log("Player Score: " + playerScore);
+        console.log("Computer Score: " + computerScore);
+    }
+
+    playGame();
+
+  </script>
+
+</body>
+</html>
